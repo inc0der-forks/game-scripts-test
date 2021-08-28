@@ -17,7 +17,9 @@ jobs:
           node-version: 14
 
       - name: Setup enviroment
-        run: mkdir ./Content 
+        run: |
+          mkdir ./Content
+          echo "::set-output name=date::$(date +'%Y-%m-%d')"
 
       - name: Setup Git & Pull changes
         working-directory: ./Content
@@ -36,12 +38,10 @@ jobs:
   
       - name: Commit changes
         working-directory: ./Content
-        continue-on-error: true
+        continue-on-error: true # We continue on error because there may not always be changes
         run: |
          git add .
-         git commit -m "Nightly"
-         echo "::set-output name=sha_short::$(git rev-parse --short GITHUB_SHA)"
-         git commit -amend -m "From commit sh ${{ steps.vars.outputs.sha_short }}""
+         git commit -m "Nightly ${{ steps.vars.outputs.date }}"
 
       - name: Push changes
         working-directory: ./Content
