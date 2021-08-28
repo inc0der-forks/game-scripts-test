@@ -29,8 +29,8 @@ jobs:
         working-directory: ./Content
         run: |
          git init
-         git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
-         git config --local user.name "github-actions[bot]"
+         git config --local user.email "inc0der.dev@gmail.com"
+         git config --local user.name "inc0der"
          git add .
          git commit -m "Nightly: From commit sh ${{ steps.vars.outputs.sha_short }}"
 
