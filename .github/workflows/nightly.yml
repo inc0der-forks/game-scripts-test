@@ -34,13 +34,8 @@ jobs:
          git config --local user.name "github-actions[bot]"
          git add .
          git commit -m "Nightly: From commit sh ${{ steps.vars.outputs.sha_short }}"
-
-      - name: Git Push to Content Repository
-        working-directory: ./Content
-        run: |
          git remote add origin "https://github.com/inc0der-forks/paper-content.git"
          git push origin develop --force
-
       
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
