@@ -23,15 +23,12 @@ jobs:
          echo "TAG=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_ENV
          echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
   
-      - name: Setup Git
-        run: |
-          git config --global init.defaultBranch develop
-          git config --global user.name "Paper Maker Workflow"
-          git config --global user.email "inc0der.dev@gmail.com"
-    
       - name: Git Push to Content Repository
         working-directory: ./Content
         run: |
+         git config --global init.defaultBranch develop
+         git config --global user.name "Paper Maker Workflow"
+         git config --global user.email "inc0der.dev@gmail.com"
          git init
          git remote add origin "https://github.com/inc0der-forks/paper-content.git"
          git add .
