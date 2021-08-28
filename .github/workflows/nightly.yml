@@ -18,6 +18,11 @@ jobs:
           npm install typescript
           npm run build
 
+      - name: Setup enviroment variables
+        run: |
+         echo "TAG=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_ENV
+         echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
+  
       - name: Setup Git
         run: git config --global init.defaultBranch develop
     
@@ -27,6 +32,8 @@ jobs:
          git init
          git config user.name = "Paper Maker"
          git remote add origin https://github.com/inc0der-forks/paper-content.git
+         git add .
+         git commit -m "Nightly: From commit sh ${{ steps.vars.outputs.sha_short }}"
          git push origin develop --force
       
       - name: Upload artifacts
