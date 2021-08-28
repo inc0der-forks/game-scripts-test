@@ -5,6 +5,7 @@
   "main": "main.js",
   "scripts": {
     "start": "electron ./main.js --dev",
+    "build": "node build.mjs",
     "doc": "webdoc -R README.md",
     "compile": "compile.sh",
     "copy": "copy-project.sh",
