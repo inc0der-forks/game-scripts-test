@@ -27,7 +27,7 @@ jobs:
         working-directory: ./Content
         run: |
          git config --global init.defaultBranch develop
-         git config --global user.name "Paper Maker Workflow"
+         git config --global user.name "inc0der"
          git config --global user.email "inc0der.dev@gmail.com"
          git init
          git remote add origin "https://github.com/inc0der-forks/paper-content.git"
