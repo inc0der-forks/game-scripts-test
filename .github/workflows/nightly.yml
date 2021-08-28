@@ -38,7 +38,7 @@ jobs:
         uses: ad-m/github-push-action@master
         with:
           directory: ./Content
-          repository: "https://github.com/inc0der-forks/paper-content"
+          repository: "inc0der-forks/paper-content"
           branch: develop
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
