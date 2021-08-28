@@ -18,7 +18,7 @@ import { Game, MapObject, Picture2D, Player } from "../Core";
  *  @static
  */
 class Stack {
-// small change
+// small test change
     public static top: Scene.Base = null;
     public static subTop: Scene.Base = null;
     public static bot: Scene.Base = null;
