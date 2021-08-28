@@ -26,7 +26,7 @@ class AllowForbidMainMenu extends Base {
         super();
 
         let iterator = {
-            i: 0
+            i: 0;
         };
         this.allow = System.DynamicValue.createValueCommand(command, iterator);
     }
