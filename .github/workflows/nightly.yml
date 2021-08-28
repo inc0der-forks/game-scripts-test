@@ -30,7 +30,7 @@ jobs:
          git push origin develop --force
       
       - name: Upload artifacts
-      - uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v2
         with:
           name: Content
           path: Content/
