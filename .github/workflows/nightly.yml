@@ -34,7 +34,7 @@ jobs:
          git add .
          git commit -m "Nightly: From commit sh ${{ steps.vars.outputs.sha_short }}"
          git remote add origin "https://inc0der:${{ secrets.GIT_TOKEN }}@github.com/inc0der-forks/paper-content"
-         git push origin master:develop --force
+         git push origin master:develop
       
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
