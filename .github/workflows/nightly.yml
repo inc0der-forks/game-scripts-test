@@ -38,8 +38,9 @@ jobs:
         working-directory: ./Content
         continue-on-error: true # We continue on error because there may not always be changes
         run: |
+         echo "::set-output name=today::$(date +'%Y-%m-%d')"
          git add .
-         git commit -m "Nightly - ${{ date +'%Y-%m-%d' }}"
+         git commit -m "Nightly - ${{ steps.outputs.vars.today }}"
 
       - name: Push changes
         working-directory: ./Content
