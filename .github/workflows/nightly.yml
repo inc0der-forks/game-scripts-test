@@ -24,6 +24,7 @@ jobs:
       - name: Setup Git & Pull changes
         working-directory: ./Content
         run: |
+         mkdir ./Content 
          git init
          git config --local user.name "inc0der"
          git config --local user.email "inc0der.dev@gmail.com"
