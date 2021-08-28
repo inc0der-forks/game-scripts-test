@@ -28,7 +28,7 @@ jobs:
         run: |
          git init
          git config user.name = "Paper Maker"
-         git remote add origin https://github.com/inc0der-forks/paper-content.git
+         git remote add origin "https://github.com/inc0der-forks/paper-content.git"
          git add .
          git commit -m "Latest release ${{ env.TAG }}"
          git push origin main --force
