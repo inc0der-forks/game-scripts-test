@@ -40,7 +40,7 @@ jobs:
           directory: ./Content
           repository: "inc0der-forks/paper-content"
           branch: develop
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: "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"
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
