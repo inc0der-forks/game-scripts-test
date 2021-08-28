@@ -24,16 +24,17 @@ jobs:
          echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
   
       - name: Git Push to Content Repository
-        working-directory: ./Content
         run: |
-         git config --global init.defaultBranch develop
-         git config --global user.name "inc0der"
-         git config --global user.email "inc0der.dev@gmail.com"
-         git init
-         git remote add origin "https://github.com/inc0der-forks/paper-content.git"
-         git add .
-         git commit -m "Nightly: From commit sh ${{ steps.vars.outputs.sha_short }}"
-         git push origin develop --force
+         git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+         git config --local user.name "github-actions[bot]"
+         git commit -m "Nightly: From commit sh ${{ steps.vars.outputs.sha_short }}" -a
+        uses: ad-m/github-push-action@master
+        with:
+          directory: ./Content/
+          repository: "https://github.com/inc0der-forks/paper-content"
+          branch: develop
+          github_token: ${{ secrets.token_test }}
+
       
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
