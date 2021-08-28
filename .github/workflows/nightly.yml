@@ -24,13 +24,15 @@ jobs:
          echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
   
       - name: Setup Git
-        run: git config --global init.defaultBranch develop
+        run: |
+          git config --global init.defaultBranch develop
+          git config --global user.name "Paper Maker Workflow"
+          git config --global user.email "inc0der.dev@gmail.com"
     
       - name: Git Push to Content Repository
         working-directory: ./Content
         run: |
          git init
-         git config user.name = "Paper Maker"
          git remote add origin "https://github.com/inc0der-forks/paper-content.git"
          git add .
          git commit -m "Nightly: From commit sh ${{ steps.vars.outputs.sha_short }}"
