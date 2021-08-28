@@ -38,6 +38,7 @@ class Collisions {
      *  @returns {THREE.Mesh}
      */
     static createBox(): THREE.Mesh {
+    // small change
         let box = new THREE.Mesh(CustomGeometry.createBox(1, 1, 1), this
             .BB_MATERIAL);
         box['previousTranslate'] = [0, 0, 0];

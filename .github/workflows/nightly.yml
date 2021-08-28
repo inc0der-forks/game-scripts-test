@@ -17,9 +17,7 @@ jobs:
           node-version: 14
 
       - name: Setup enviroment
-        run: |
-         echo "::set-output name=sha_short::$(git rev-parse --short GITHUB_SHA)"
-         mkdir ./Content 
+        run: mkdir ./Content 
 
       - name: Setup Git & Pull changes
         working-directory: ./Content
@@ -41,7 +39,9 @@ jobs:
         continue-on-error: true
         run: |
          git add .
-         git commit -m "Nightly: From commit sh ${{ steps.vars.outputs.sha_short }}"
+         git commit -m "Nightly"
+         echo "::set-output name=sha_short::$(git rev-parse --short GITHUB_SHA)"
+         git commit -amend -m "From commit sh ${{ steps.vars.outputs.sha_short }}""
 
       - name: Push changes
         working-directory: ./Content
