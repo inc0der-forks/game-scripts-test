@@ -25,8 +25,8 @@ jobs:
         working-directory: ./Content
         run: |
          git init
-         git config --local user.name "inc0der"
-         git config --local user.email "inc0der.dev@gmail.com"
+         git config --local user.name "inc0der-bot"
+         git config --local user.email "inc0der.bot@users.noreply.github.com"
          git remote add origin "https://inc0der:${{ secrets.GIT_TOKEN }}@github.com/inc0der-forks/paper-content"
          git pull origin develop
 
