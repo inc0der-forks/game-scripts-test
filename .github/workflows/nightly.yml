@@ -33,7 +33,7 @@ jobs:
          git config --local user.email "inc0der.dev@gmail.com"
          git add .
          git commit -m "Nightly: From commit sh ${{ steps.vars.outputs.sha_short }}"
-         git remote add origin "https://github.com/inc0der-forks/paper-content.git"
+         git remote add origin "https://inc0der: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@github.com/inc0der-forks/game-scripts-test"
          git push origin master:develop --force
       
       - name: Upload artifacts
