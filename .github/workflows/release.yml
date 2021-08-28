@@ -18,7 +18,7 @@ jobs:
       - run: git init Content/
       - run: git config user.name = "Paper Maker"
       - run: git remote add origin https://github.com/inc0der-forks/paper-content.git
-      - run: git push main --force
+      - run: git push origin main --force
       - uses: actions/upload-artifact@v2
         with:
           name: Content
