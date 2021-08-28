@@ -18,7 +18,7 @@ jobs:
           npm run build
 
       - name: Setup Git
-      - run: git config --global init.defaultBranch main
+        run: git config --global init.defaultBranch main
     
       - name: Git Push to Content Repository
         working-directory: ./Content
