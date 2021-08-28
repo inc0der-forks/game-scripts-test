@@ -24,9 +24,9 @@ class AllowForbidMainMenu extends Base {
 
     constructor(command: any[]) {
         super();
-
+        // A random change
         let iterator = {
-            i: 0;
+            i: 0
         };
         this.allow = System.DynamicValue.createValueCommand(command, iterator);
     }
