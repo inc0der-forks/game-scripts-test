@@ -16,15 +16,15 @@ jobs:
         with:
           node-version: 14
 
-      - name: Setup enviroment variables
+      - name: Setup enviroment
         run: |
          echo "TAG=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_ENV
          echo "::set-output name=sha_short::$(git rev-parse --short GITHUB_SHA)"
+         mkdir ./Content 
 
       - name: Setup Git & Pull changes
         working-directory: ./Content
         run: |
-         mkdir ./Content 
          git init
          git config --local user.name "inc0der"
          git config --local user.email "inc0der.dev@gmail.com"
