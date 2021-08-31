@@ -17,10 +17,10 @@ jobs:
           node-version: 14
 
       - name: Setup enviroment
-        run: mkdir ./Scripts
+        run: mkdir ./Content/Datas/Scripts/
 
       - name: Setup Git & Pull changes
-        working-directory: ./Scripts
+        working-directory: ./Content/Datas/Scripts/
         run: |
          git clone "https://inc0der:${{ secrets.GIT_TOKEN }}@github.com/inc0der-forks/Game-Scripts-Build.git" ./
          git config --local user.name "PaperMaker-Bot"
@@ -31,22 +31,22 @@ jobs:
         run: |
           npm install
           npm install typescript
-          npm run compile
+          npm run build
   
       - name: Commit changes
-        working-directory: ./Scripts
+        working-directory: ./Content/Datas/Scripts/
         continue-on-error: true
         run: |
          git add .
          git commit -m "Nightly - ${{ github.repository }}@${{ github.sha }}"
 
       - name: Push changes
-        working-directory: ./Scripts
+        working-directory: ./Content/Datas/Scripts/
         run: git push origin develop
       
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
         with:
           name: Scripts
-          path: Scripts/
+          path: ./Content/Datas/Scripts/
 
