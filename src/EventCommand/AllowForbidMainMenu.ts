@@ -24,7 +24,7 @@ class AllowForbidMainMenu extends Base {
 
     constructor(command: any[]) {
         super();
-        // A random change
+
         let iterator = {
             i: 0
         };

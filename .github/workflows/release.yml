@@ -9,32 +9,43 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+          persist-credentials: false
       - uses: actions/setup-node@v2
         with:
           node-version: 14
-      - run: |
+
+      - name: Setup enviroment
+        run: mkdir ./Scripts 
+
+      - name: Setup Git & Pull changes
+        working-directory: ./Scripts
+        run: |
+         git clone https://Wano-k:${{ secrets.GIT_TOKEN }}@github.com/RPG-Paper-Maker/Game-Scripts-Build.git" ./
+         git config --local user.name "PaperMaker-Bot"
+         git config --local user.email "PaperMaker-bot@users.noreply.github.com"
+         git checkout master
+
+      - name: Build from source
+        run: |
           npm install
           npm install typescript
-          npm run build
-
-      - name: Get the tag name
-        run: echo "TAG=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_ENV
-
-      - name: Setup Git
-        run: git config --global init.defaultBranch main
-    
-      - name: Git Push to Content Repository
-        working-directory: ./Content
+          npm run compile
+  
+      - name: Commit changes
+        working-directory: ./Scripts
+        continue-on-error: true
         run: |
-         git init
-         git config user.name = "Paper Maker"
-         git remote add origin "https://github.com/inc0der-forks/paper-content.git"
          git add .
-         git commit -m "Latest release ${{ env.TAG }}"
-         git push origin main --force
+         git commit -m "Release - ${{ github.repository }}@${{ github.sha }}"
+
+      - name: Push changes
+        working-directory: ./Scripts
+        run: git push origin develop
       
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
         with:
           name: Content
           path: Content/
+

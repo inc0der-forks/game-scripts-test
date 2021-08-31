@@ -17,4 +17,3 @@ export * as Manager from "./Manager";
 export * as Scene from "./Scene";
 export * as Common from "./Common";
 export * as System from "./System";
-// small change

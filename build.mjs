@@ -8,7 +8,7 @@ function runCommand(command, args = []) {
 
     exec(`${command} ${commandArgs}`, async (err, stdout, stderr) => {
       if (err) {
-        reject(`"Problem running ${command}"`)
+        reject(`"Problem running ${command} ${commandArgs} \n ${stdout}"`)
         return;
       }
       if (stdout.length > 0) {
@@ -58,16 +58,17 @@ async function exists(path) {
     }
 
     if (process.env.CI || process.env.PRODUCTION) {
-      await runCommand("npx", ["tsc"]);
+      await runCommand("npx", ["tsc", "--outDir Scripts/System"]);
     } else {
       await runCommand("npx", ["tsc", "--incremental"]);
     }
+    await runCommand("module-fix.sh", [], true);
     await fs.copyFile(`${ SRC_DIR }/Definitions.d.ts`, `${ SYSTEM_DIR }/Definitions.d.ts`)
     const endTime = Date.now() - startTime;
     console.log(
         `Compilation completed in ${ Math.floor(endTime / 1000) } seconds`
       );
   } catch (error) {
-    console.error(error.message);
+    console.error(error);
   }
 })();
